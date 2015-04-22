@@ -15,8 +15,6 @@ import com.data_mining.model.attributes_records.AttributesSpecifications;
 import com.data_mining.model.attributes_records.Records;
 import com.data_mining.model.attributes_records.TypeAttribute;
 import com.data_mining.model.clusters.AttributeCluster;
-import com.data_mining.model.clusters.BisectCluster;
-import com.data_mining.model.clusters.BisectClusterList;
 import com.data_mining.model.clusters.Centroid;
 import com.data_mining.model.clusters.CluseterList;
 import com.data_mining.model.clusters.Cluster;
@@ -172,25 +170,7 @@ public class ClusterLogics {
 		return true;
 	}
 	
-	/**
-	 * Computes the clusters using Bisect k means
-	 * @param Encapsulation of clusters
-	 * @throws CloneNotSupportedException
-	 */
-	public void computeFinalClustersBisect(CluseterList list) throws CloneNotSupportedException
-	{
-		for(int i=0;list.size()<ValueConstants.K_NUMBER;i++)
-		{
-			int index = findHighestSSE(list);
-			
-			List<Cluster> clusterList = bisectCluster(list.getClusterAt(index));
-			
-			list.removeClusterAt(index);
-				
-			list.addAllCluster(clusterList);
-			
-		}
-	}
+
 	
 	/**
 	 * computes clusters using basic k means
@@ -245,41 +225,6 @@ public class ClusterLogics {
 	//		points.add(point);
 			list.getClusterAt(temp).addPoints(points.get(i));
 		}
-	}
-	
-	/**
-	 * Add points from cluster to Bisect Cluster data model
-	 * @param bisect
-	 * @param data
-	 */
-	public void addClusterPoints(BisectCluster bisect,Cluster data)
-	{
-		CluseterList list = new CluseterList();
-		list.addCluster(bisect.getC1());
-		list.addCluster(bisect.getC2());
-		
-		list.clearsClusterPoints();
-		
-		for(int i=0 ; i<data.size() ; i++)
-		{
-			int temp = findClosestClusterAndAddPoint(list, 
-					getPoints(data.getAttributes(), data.getRecords().get(i)
-							)
-					);
-			
-			list.getClusterAt(temp).addPoints(data.getRecords().get(i)
-					);
-		}
-		
-
-		
-		calculateSSEForCluster(bisect.getC1());
-	//	System.out.println(bisect.getC1().getSSE());
-		calculateSSEForCluster(bisect.getC2());
-		
-		bisect.setTotalSSE(bisect.getC1().getSSE()+bisect.getC2().getSSE());
-		
-		
 	}
 	
 	/**
@@ -500,17 +445,6 @@ public class ClusterLogics {
 		}
 	}
 	
-	public void recomputingCentroids(BisectCluster bisect,Cluster data)
-	{
-		CluseterList list = new CluseterList();
-		list.addCluster(bisect.getC1());
-		list.addCluster(bisect.getC2());
-		
-		for(int i = 0;i<list.size();i++)
-		{
-			alterCentroid(list.getClusterAt(i), data.getAttributes());
-		}
-	}
 	
 	private void alterCentroid(Cluster cluster,List<AttributeCluster> attrb)
 	{
@@ -601,65 +535,7 @@ public class ClusterLogics {
 	
 	
 		
-	/**
-	 * Bisects a cluster to give two cluster in  a list
-	 * @param cluster
-	 * @return
-	 * @throws CloneNotSupportedException
-	 */
-	public List<Cluster> bisectCluster(Cluster cluster) throws CloneNotSupportedException
-	{
-		Cluster c1 = new Cluster(
-				new CommonLogics().generateRandomNumbers(1, cluster.numberOfPoints()),0);
-		
-		Cluster c2 = new Cluster(
-				new CommonLogics().generateRandomNumbers(1, cluster.numberOfPoints()),0);
-		
-		c1.setAttributes(cluster.getAttributes());
-		c2.setAttributes(cluster.getAttributes());
-		
-		BisectClusterList blist = new BisectClusterList();
-		
-		
-		BisectCluster bisect 
-					 = new BisectCluster(c1.clone(), c2.clone());
-		
-		addClusterPoints(bisect, cluster);
-		blist.addBisectCluster(bisect);
-		
-		for(int i=0 ; i<ValueConstants.TRIALS ; i++)
-		{
-			Cluster cc1 = bisect.getC1().clone();
-			Cluster cc2 = bisect.getC2().clone();
-			
-			BisectCluster bisectt = new BisectCluster(cc1, cc2);
-				
-			recomputingCentroids(bisectt, cluster);
-			
-			addClusterPoints(bisectt, cluster);
-			blist.addBisectCluster(bisectt);
-		//	blist.getBisectList().get(i).setTotalSSE(bisectt.getC1().getSSE()+bisectt.getC2().getSSE());
-			
-		}
-		
-		int lowest = 0;
-		
-		for(int i=0;i<blist.size();i++)
-		{
-			if(blist.SSEat(i)<blist.SSEat(lowest))
-			{
-				lowest = i;
-			}
-		}
-		
-		CluseterList clist = new CluseterList();
-		clist.addCluster(blist.getBisectList().get(lowest).getC1());
-		clist.addCluster(blist.getBisectList().get(lowest).getC2());
-		
-				
-		return clist.getClusters();
-	}
-	
+
 	
 	public List<Double> getColumnFromRecordListDouble(
 			List<RecordCluster> recList, int index) {

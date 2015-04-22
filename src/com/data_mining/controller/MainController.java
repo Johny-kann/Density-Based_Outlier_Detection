@@ -9,10 +9,8 @@ import com.data_mining.constants.Notations;
 import com.data_mining.constants.ValueConstants;
 import com.data_mining.file_readers.PropertiesConfig;
 import com.data_mining.file_readers.TextFileWriter;
-import com.data_mining.logic.AgglomerativeComputations;
 import com.data_mining.logic.AnomalyLogic;
 import com.data_mining.logic.AttributeAndRecordLoaders;
-import com.data_mining.logic.ChoosingAttributes;
 import com.data_mining.logic.ClusterLogics;
 import com.data_mining.logic.CommonLogics;
 import com.data_mining.logic.ErrorsAndGain;
@@ -104,8 +102,10 @@ public class MainController {
 	//	loadTable();
 	StringBuffer stb = new StringBuffer();
 	
-	stb.append(Notations.AGLORITHM_TYPE+"\n");
-	stb.append(Notations.OUTLIER_TYPE+"\n");
+	stb.append(Notations.AGLORITHM_TYPE);
+	stb.append(System.lineSeparator());
+	stb.append(Notations.OUTLIER_TYPE);
+	stb.append(System.lineSeparator());
 		for(int j=3;j<=10;j++)
 		{
 			
@@ -133,50 +133,11 @@ public class MainController {
 		
 		System.out.println(stb.toString());
 		
-		if(Notations.RAND_STATISTICS)
-			new ClusterLogics().assignClusterClass(clusters);
-	}
-	
-	public void startAgglomerative()
-	{
-		loadTable();
-		
-	
-		for(int i=0;i<dataCluster.sizeOfRecords();i++)
-		{
-			clusters.addCluster(new Cluster(
-					CommonLogics.convertsStringArrayTDouble(dataCluster.returnPointsAt(i))
-					, i));
-			clusters.getClusterAt(i).setAttributes(dataCluster.getAttributes());
-			clusters.getClusterAt(i).addPoints(dataCluster.getRecordAt(i));
-		}
-		
-		new AgglomerativeComputations().computeClustersAgglomerative(clusters);
-		
-		if(Notations.RAND_STATISTICS)
-			new ClusterLogics().assignClusterClass(clusters);
-	}
-	
-	public void startBisectKMeans()
-	{
-		loadTable();
-		
-	
-		Cluster cl = new Cluster( 
-				new CommonLogics().generateRandomNumbers(1, dataCluster.numberOfPoints()),0);
-		
-		cl.setAttributes(dataCluster.getAttributes());
-		cl.setRecords(dataCluster.getRecordsList());
-		
-		clusters.addCluster(cl);
-		
-		computeClustersBisect();
-		
-		if(Notations.RAND_STATISTICS)
-			new ClusterLogics().assignClusterClass(clusters);
+		printResult(stb.toString());
 		
 	}
 	
+
 	
 	public String computeClusters()
 	{
@@ -192,24 +153,13 @@ public class MainController {
 		return findArea(tprs);
 	}
 	
-	public void computeClustersBisect()
-	{
-		ClusterLogics cl = new ClusterLogics();
-		try {
-			
-			cl.computeFinalClustersBisect(clusters);
-			
-		} catch (CloneNotSupportedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
+
 	
 	public void startAnomaly()
 	{
 		StringBuffer stb = new StringBuffer();
-		stb.append(Notations.AGLORITHM_TYPE+"\n");
+		stb.append(Notations.AGLORITHM_TYPE);
+		stb.append(System.lineSeparator());
 		
 		for(int i = 3;i<=10;i++	)
 		{
@@ -225,6 +175,7 @@ public class MainController {
 		}
 		
 		System.out.println(stb.toString());
+		printResult(stb.toString());
 	}
 	
 	public List<TPRandFPR> findTPRsForK()
@@ -251,9 +202,9 @@ public class MainController {
 		
 	}
 	
-	public void getResultSet()
+	public void printResult(String content)
 	{
-		
+		new TextFileWriter(FilesList.WRITE_RESULT).writeFile(content, FilesList.WRITE_RESULT);
 	}
 	
 

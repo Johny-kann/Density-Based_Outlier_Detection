@@ -18,8 +18,8 @@ public class InitProgram {
 
 	mc.start();
 	
-	String output = mc.outputClusters();
-	new TextFileWriter(FilesList.WRITE_RESULT).writeFile(output, FilesList.WRITE_RESULT);
+//	String output = mc.outputClusters();
+//	new TextFileWriter(FilesList.WRITE_RESULT).writeFile(output, FilesList.WRITE_RESULT);
 //	System.out.println(output);
 	
 	}
