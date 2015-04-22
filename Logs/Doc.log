@@ -1,0 +1,24 @@
+Apr 21, 2015 11:22:43 PM com.data_mining.logic.CommonLogics settingFiles
+INFO: Setting file Input1/attributes.txt file constant Input1/attributes.txt
+Apr 21, 2015 11:22:43 PM com.data_mining.logic.CommonLogics settingFiles
+INFO: Setting file Input1/train-records.txt file constant Input1/train-records.txt
+Apr 21, 2015 11:22:43 PM com.data_mining.logic.CommonLogics settingFiles
+INFO: Setting file Output/Results.txt file constant Output/Results.txt
+Apr 21, 2015 11:22:43 PM com.data_mining.logic.CommonLogics settingFiles
+INFO: Setting file Output/Items-Rules.txt file constant Output/ItemsAndRules.txt
+Apr 21, 2015 11:22:43 PM com.data_mining.file_readers.TextFileReader resetReader
+INFO: Going to read file Input1/attributes.txt
+Apr 21, 2015 11:22:43 PM com.data_mining.file_readers.TextFileReader resetReader
+INFO: Going to read file Input1/attributes.txt
+Apr 21, 2015 11:22:43 PM com.data_mining.file_readers.TextFileReader resetReader
+INFO: Going to read file Input1/train-records.txt
+Apr 21, 2015 11:22:43 PM com.data_mining.file_readers.TextFileReader resetReader
+INFO: Going to read file Input1/train-records.txt
+Apr 21, 2015 11:22:43 PM com.data_mining.file_readers.TextFileReader resetReader
+INFO: Going to read file Input1/attributes.txt
+Apr 21, 2015 11:22:43 PM com.data_mining.file_readers.TextFileReader resetReader
+INFO: Going to read file Input1/attributes.txt
+Apr 21, 2015 11:22:43 PM com.data_mining.file_readers.TextFileReader resetReader
+INFO: Going to read file Input1/train-records.txt
+Apr 21, 2015 11:22:43 PM com.data_mining.file_readers.TextFileReader resetReader
+INFO: Going to read file Input1/train-records.txt
