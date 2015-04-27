@@ -1,25 +1,18 @@
-RelativeDensity
-K - Nearest Neighbours 3
-Area of ROC Curve 0.41106
-
-K - Nearest Neighbours 4
-Area of ROC Curve 0.44712
-
-K - Nearest Neighbours 5
-Area of ROC Curve 0.48317
-
-K - Nearest Neighbours 6
-Area of ROC Curve 0.52404
-
-K - Nearest Neighbours 7
-Area of ROC Curve 0.53125
-
-K - Nearest Neighbours 8
-Area of ROC Curve 0.57933
-
-K - Nearest Neighbours 9
-Area of ROC Curve 0.65024
-
-K - Nearest Neighbours 10
-Area of ROC Curve 0.71034
-
+BasicKmeans
+relativedistance
+K = 3
+Area of ROC Curve = 0.76838
+K = 4
+Area of ROC Curve = 0.77451
+K = 5
+Area of ROC Curve = 0.85049
+K = 6
+Area of ROC Curve = 0.72059
+K = 7
+Area of ROC Curve = 0.74632
+K = 8
+Area of ROC Curve = 0.73897
+K = 9
+Area of ROC Curve = 0.82475
+K = 10
+Area of ROC Curve = 0.80025

@@ -195,7 +195,7 @@ public class MainController {
 	public String findArea(List<TPRandFPR> points)
 	{
 		AnomalyLogic anomaly = new AnomalyLogic();
-		double area = new ErrorsAndGain().roundOff(anomaly.findAreaRoc(points
+		Double area = new ErrorsAndGain().roundOff(anomaly.findAreaRoc(points
 				),5);
 		
 		return area+"";
