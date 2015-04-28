@@ -87,10 +87,10 @@ public class MainController {
 			Notations.DEFAULT_CLASS = new ClusterLogics().getMaxClass(dataCluster.getColumClasses());
 		}
 		
-		if(Notations.AGLORITHM_TYPE==AlgorithmType.BasicKmeans)
+		if(Notations.ALGORITHM_TYPE==AlgorithmType.BasicKmeans)
 			startBasicKMeans();
 		
-		if(Notations.AGLORITHM_TYPE==AlgorithmType.RelativeDensity)
+		if(Notations.ALGORITHM_TYPE==AlgorithmType.RelativeDensity)
 			startAnomaly();
 		
 		
@@ -102,9 +102,9 @@ public class MainController {
 	//	loadTable();
 	StringBuffer stb = new StringBuffer();
 	
-	stb.append(Notations.AGLORITHM_TYPE);
+	stb.append(Notations.ALGORITHM_TYPE);
 	stb.append(System.lineSeparator());
-	stb.append(Notations.OUTLIER_TYPE);
+	stb.append("Outlier Estimate : "+Notations.OUTLIER_TYPE);
 	stb.append(System.lineSeparator());
 		for(int j=3;j<=10;j++)
 		{
@@ -158,10 +158,10 @@ public class MainController {
 	public void startAnomaly()
 	{
 		StringBuffer stb = new StringBuffer();
-		stb.append(Notations.AGLORITHM_TYPE);
+		stb.append(Notations.ALGORITHM_TYPE);
 		stb.append(System.lineSeparator());
 		
-		for(int i = 3;i<=10;i++	)
+		for(int i = 3;i<=10 && i<mainAttributes.sizeOfRecords();i++	)
 		{
 			ValueConstants.K_NEAREST_NEIGHBOUR = i;
 			List<TPRandFPR> points = findTPRsForK();
@@ -212,7 +212,7 @@ public class MainController {
 	public String outputClusters()
 	{
 		StringBuffer stb = new StringBuffer();
-		stb.append(Notations.AGLORITHM_TYPE);
+		stb.append(Notations.ALGORITHM_TYPE);
 		stb.append(System.lineSeparator());
 		stb.append("Table used ");
 		stb.append(System.lineSeparator());

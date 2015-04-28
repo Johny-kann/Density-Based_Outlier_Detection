@@ -62,7 +62,7 @@ public class Notations {
 	
 	public static ProximityType proximityType = ProximityType.SingleLink;
 	
-	public static AlgorithmType AGLORITHM_TYPE = AlgorithmType.RelativeDensity;
+	public static AlgorithmType ALGORITHM_TYPE = AlgorithmType.RelativeDensity;
 	
 	public static OutlierType OUTLIER_TYPE = OutlierType.relativedistance;
 	

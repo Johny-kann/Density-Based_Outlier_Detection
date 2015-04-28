@@ -101,11 +101,11 @@ public class CommonLogics {
 		{
 			if(str.substring(10,str.length()).equalsIgnoreCase("basicKmeans"))
 			{
-				Notations.AGLORITHM_TYPE = AlgorithmType.BasicKmeans;
+				Notations.ALGORITHM_TYPE = AlgorithmType.BasicKmeans;
 			}
 			else
 			{
-				Notations.AGLORITHM_TYPE = AlgorithmType.RelativeDensity;
+				Notations.ALGORITHM_TYPE = AlgorithmType.RelativeDensity;
 			}
 		}
 		
@@ -113,15 +113,15 @@ public class CommonLogics {
 		{
 			if(str.substring(11,str.length()).equalsIgnoreCase("Basic-K-means"))
 			{
-				Notations.AGLORITHM_TYPE = AlgorithmType.BasicKmeans;
+				Notations.ALGORITHM_TYPE = AlgorithmType.BasicKmeans;
 			}
 			else if(str.substring(11,str.length()).equalsIgnoreCase("Bisect-K-means"))
 			{
-				Notations.AGLORITHM_TYPE = AlgorithmType.BisectKmeans;
+				Notations.ALGORITHM_TYPE = AlgorithmType.BisectKmeans;
 			}
 			else
 			{
-				Notations.AGLORITHM_TYPE = AlgorithmType.Agglomerative;
+				Notations.ALGORITHM_TYPE = AlgorithmType.Agglomerative;
 			}
 		}
 		

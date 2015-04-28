@@ -49,7 +49,7 @@ public class AnomalyLogic {
 		
 		new CommonLogics().sort(list);
 		
-		for(int i=0;i<ValueConstants.K_NEAREST_NEIGHBOUR;i++)
+		for(int i=0;i<ValueConstants.K_NEAREST_NEIGHBOUR && i<list.size();i++)
 		{	
 		//	Points pts = new Points(table.getAttributes());
 		
@@ -101,8 +101,15 @@ public class AnomalyLogic {
 			for(int i=0 ; i<cluster.size() ; i++)
 		{
 			Double median = findMedianDistance(cluster);
+			
 			cluster.getPoints().get(i).setOutlierScore(
 					cluster.getPoints().get(i).getOutlierScore()/median);
+			
+			if(Double.isNaN(cluster.getPoints().get(i).getOutlierScore()))
+			{	
+				cluster.getPoints().get(i).setOutlierScore(0.0);
+			}
+					
 		}
 			
 		}
@@ -212,6 +219,9 @@ public class AnomalyLogic {
 		point.setOutlierScore(
 				 new ErrorsAndGain().roundOff((sum/point.nearestNeighbours().size())/point.getDensity(),4)
 				);
+		
+		
+		
 	}
 	
 	public List<TPRandFPR> findRocTPR(List<Points> points)
