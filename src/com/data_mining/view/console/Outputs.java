@@ -124,6 +124,42 @@ public class Outputs {
 		return stb.toString();
 	}
 	
+	
+	public String outputClusterListPoints(CluseterList list)
+	{
+		StringBuffer stb = new StringBuffer();
+		
+		for(int i=0; i<list.size(); i++)
+		{
+	//		stb.append(System.lineSeparator());
+		//	stb.append("Cluster "+i);
+		//	stb.append(System.lineSeparator());
+			stb.append(outputClusterPoints(list.getClusterAt(i),i));
+		//	stb.append(System.lineSeparator());
+		}
+		
+		return stb.toString();
+	}
+	
+	public String outputClusterPoints(Cluster cluster, int num)
+	{
+		StringBuffer stb = new StringBuffer();
+		
+		for(int i=0; i<cluster.getPoints().size();i++)
+		{
+		//	stb.append(cluster.getPoints().get(i).get
+			stb.append(outputRecordCluster(cluster.getRecords().get(i)));
+			stb.append("\t");
+			stb.append("Cluster "+num);
+			stb.append("\t");
+			stb.append(cluster.getPoints().get(i).getOutlierScore());
+			stb.append(System.lineSeparator());
+			
+		}
+		
+		return stb.toString();
+	}
+	
 	public String outputCluster(Cluster cluster)
 	{
 		StringBuffer stb = new StringBuffer();
@@ -168,7 +204,7 @@ public class Outputs {
 			stb.append(recs.getValueat(i));
 			stb.append("\t");
 		}
-		stb.append(System.lineSeparator());
+	//	stb.append(System.lineSeparator());
 		return stb.toString();
 	}
 	

@@ -131,7 +131,7 @@ public class MainController {
 		
 		}
 		
-		System.out.println(stb.toString());
+	//	System.out.println(stb.toString());
 		
 		printResult(stb.toString());
 		
@@ -147,6 +147,8 @@ public class MainController {
 		cl.computeFinalClusters(clusters, dataCluster, points);
 		
 		al.findDistanceAllClusterToCentroid(points, clusters);
+		
+		System.out.println(new Outputs().outputClusterListPoints(clusters));
 		
 		List<TPRandFPR> tprs = al.findRocTPR(points);
 
