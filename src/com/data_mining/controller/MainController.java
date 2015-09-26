@@ -74,8 +74,11 @@ public class MainController {
 			dataCluster = temp;
 		}
 		
+	if(true)
+	{
 		String minClass = new CommonLogics().findMinClass(mainAttributes);
 		Notations.ANOMALY_CLASS = minClass;
+	}
 	}
 	
 	public void start()
@@ -106,6 +109,11 @@ public class MainController {
 	stb.append(System.lineSeparator());
 	stb.append("Outlier Estimate : "+Notations.OUTLIER_TYPE);
 	stb.append(System.lineSeparator());
+	
+	StringBuffer dataResult = new StringBuffer();
+	
+	StringBuffer resResult = new StringBuffer();
+	
 		for(int j=3;j<=10;j++)
 		{
 			
@@ -126,12 +134,16 @@ public class MainController {
 		
 		
 		
-		stb.append("Area of ROC Curve = "+computeClusters());
+		stb.append("Area of ROC Curve = "+computeClusters(dataResult, resResult));
+
 		stb.append(System.lineSeparator());
 		
 		}
 		
-	//	System.out.println(stb.toString());
+		System.out.println(stb.toString());
+		new TextFileWriter(FilesList.WRITE_DATA).writeFile(dataResult.toString(), FilesList.WRITE_DATA);
+		new TextFileWriter(FilesList.WRITE_ROC).writeFile(resResult.toString(), FilesList.WRITE_ROC);
+		
 		
 		printResult(stb.toString());
 		
@@ -139,7 +151,7 @@ public class MainController {
 	
 
 	
-	public String computeClusters()
+	public String computeClusters(StringBuffer stb, StringBuffer resResult)
 	{
 		ClusterLogics cl = new ClusterLogics();
 		AnomalyLogic al = new AnomalyLogic();
@@ -148,9 +160,25 @@ public class MainController {
 		
 		al.findDistanceAllClusterToCentroid(points, clusters);
 		
-		System.out.println(new Outputs().outputClusterListPoints(clusters));
+//		System.out.println(
+		String content = new Outputs().outputClusterListPoints(clusters);
+//				);
+		
+//		new TextFileWriter(FilesList.WRITE_RESULT).writeFile(content, FilesList.WRITE_DATA);
+//		new TextFileWriter(FilesList.WRITE_DATA).appendFile(content, FilesList.WRITE_DATA);
+		stb.append(content);
+		
+		resResult.append(System.lineSeparator());
+		resResult.append("TPR\tFPR");
+		resResult.append(System.lineSeparator());
 		
 		List<TPRandFPR> tprs = al.findRocTPR(points);
+		
+		for(TPRandFPR tp : tprs)
+		{
+			resResult.append(tp.getTPR()+"\t"+tp.getFPR());
+			resResult.append(System.lineSeparator());
+		}
 
 		return findArea(tprs);
 	}
@@ -177,6 +205,7 @@ public class MainController {
 		}
 		
 		System.out.println(stb.toString());
+		
 		printResult(stb.toString());
 	}
 	

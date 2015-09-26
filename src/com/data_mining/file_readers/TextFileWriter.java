@@ -55,6 +55,7 @@ public class TextFileWriter {
 		    		new FileWriter(location)
 		    );
 		    writer.write(content);
+		 //   writer.append(content);
 		
 		} catch (IOException ex) {
 		  // report

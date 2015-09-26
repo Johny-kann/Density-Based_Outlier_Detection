@@ -16,6 +16,8 @@ public class FilesList {
 	
 	public static String WRITE_RESULT = "Output/Results.txt";
 	public static String WRITE_ITEMSET = "Output/ItemsAndRules.txt";
+	public static String WRITE_DATA = "Output/DataResult.txt";
+	public static String WRITE_ROC = "Output/ROCResult.txt";
 	
 	public static final String LOG_ACCURACY = "Logs/Accuracy.log";
 	public static final String LOG_TRAIN = "Logs/Train.log";

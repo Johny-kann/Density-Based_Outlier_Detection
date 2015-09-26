@@ -1,18 +1,18 @@
 BasicKmeans
 Outlier Estimate : distance
 K = 3
-Area of ROC Curve = 0.98284
+Area of ROC Curve = 0.96446
 K = 4
-Area of ROC Curve = 0.97917
+Area of ROC Curve = 0.9951
 K = 5
 Area of ROC Curve = 0.98529
 K = 6
-Area of ROC Curve = 0.99387
-K = 7
 Area of ROC Curve = 0.98407
-K = 8
+K = 7
 Area of ROC Curve = 0.86765
+K = 8
+Area of ROC Curve = 0.97304
 K = 9
-Area of ROC Curve = 0.85784
+Area of ROC Curve = 0.9902
 K = 10
-Area of ROC Curve = 0.99387
+Area of ROC Curve = 0.98897
